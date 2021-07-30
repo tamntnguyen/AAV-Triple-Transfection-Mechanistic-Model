@@ -11,7 +11,7 @@ This repository provides the mechanistic model in '[Mechanistic model for produc
 
 * **calc_growth_rate.m** computes time-dependent cell density and growth rate
 
-8 **model_params.mat**  contains optimized model parameter values
+* **model_params.mat**  contains optimized model parameter values
 
 
 
