@@ -18,6 +18,8 @@ The AAV code was re-written as a Python library. To install the library:
 
 At this point you should be able to import the library into your Python programs.
 
+![AAV_diagram](https://www.ncbi.nlm.nih.gov/pmc/articles/instance/8143981/bin/fx1.jpg)
+
 ## Usage 
 
 The Jupyter Notebook `notebooks/aav_ode.ipynb` shows an example of how to use
@@ -30,10 +32,9 @@ An interactivate dashboard is included for the non-programmer. To run the dashbo
 
 The command-line will provide a link to connect to the local dashboard.
 
+![dashboard](assets/dashboard.png)
 
-
-![AAV_diagram](https://www.ncbi.nlm.nih.gov/pmc/articles/instance/8143981/bin/fx1.jpg)
-
+### Sample Jupyter Notebook code
 
 ```python
 from aav_ode import Experiments
@@ -53,12 +54,14 @@ t, prediction = aav_model.run_simulation()
 ```python
 aav_model.plot_production(t, prediction)
 ```
+![production plot](assets/plot_production.png)
 
 ```python
 aav_model.plot_replication(t, prediction)
 ```
+![replication plot](assets/plot_replication.png)
 
 ```python
 aav_model.plot_outputs(t, prediction)
 ```
-
+![outputs plot](assets/plot_outputs.png)

@@ -340,4 +340,4 @@ app.layout = dmc.Container(children=layout)
 server = app.server  # expose server variable for Procfile
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run_server(debug=False)
