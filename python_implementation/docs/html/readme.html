@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>AAV ODE Model &#8212; aav_ode 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/nature.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="src" href="modules.html" />
+    <link rel="prev" title="Indices and tables" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="src"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Indices and tables"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">aav_ode 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">AAV ODE Model</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="aav-ode-model">
+<h1>AAV ODE Model<a class="headerlink" href="#aav-ode-model" title="Permalink to this heading">¶</a></h1>
+<p>Mechanistic model for production of recombinant adeno-associated virus via triple transfection of HEK293 cells.</p>
+<p>The original code was MATLAB. The code in this directory has been ported to Python 3 and provides an interactive dashboard.</p>
+<p><img alt="aav paper" src="assets/aav_ode_paper.png" /></p>
+<p><a class="reference external" href="https://www.cell.com/molecular-therapy-family/methods/fulltext/S2329-0501(21)00072-3">Link to Nguyen et al. paper</a></p>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
+<p>The AAV code was re-written as a Python library. To install the library:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">aav_ode_model_env</span> <span class="pre">pip</span> <span class="pre">python</span> <span class="pre">jupyter</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">aav_ode_model_env</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p></li>
+</ol>
+<p>At this point you should be able to import the library into your Python programs.</p>
+<p><img alt="AAV_diagram" src="https://www.ncbi.nlm.nih.gov/pmc/articles/instance/8143981/bin/fx1.jpg" /></p>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<p>The Jupyter Notebook <code class="docutils literal notranslate"><span class="pre">notebooks/aav_ode.ipynb</span></code> shows an example of how to use
+the Python library.</p>
+</section>
+<section id="dashboard">
+<h2>Dashboard<a class="headerlink" href="#dashboard" title="Permalink to this heading">¶</a></h2>
+<p>An interactivate dashboard is included for the non-programmer. To run the dashboard:</p>
+<p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">app.py</span></code></p>
+<p>The command-line will provide a link to connect to the local dashboard.</p>
+<p><img alt="dashboard" src="assets/dashboard.png" /></p>
+<section id="sample-jupyter-notebook-code">
+<h3>Sample Jupyter Notebook code<a class="headerlink" href="#sample-jupyter-notebook-code" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aav_ode</span> <span class="kn">import</span> <span class="n">Experiments</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">aav_model</span> <span class="o">=</span> <span class="n">Experiments</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">,</span> <span class="n">prediction</span> <span class="o">=</span> <span class="n">aav_model</span><span class="o">.</span><span class="n">run_simulation</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">aav_model</span><span class="o">.</span><span class="n">plot_production</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">prediction</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="production plot" src="assets/plot_production.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">aav_model</span><span class="o">.</span><span class="n">plot_replication</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">prediction</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="replication plot" src="assets/plot_replication.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">aav_model</span><span class="o">.</span><span class="n">plot_outputs</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">prediction</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="outputs plot" src="assets/plot_outputs.png" /></p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">AAV ODE Model</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#dashboard">Dashboard</a><ul>
+<li><a class="reference internal" href="#sample-jupyter-notebook-code">Sample Jupyter Notebook code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="index.html"
+                          title="previous chapter">Indices and tables</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="modules.html"
+                          title="next chapter">src</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/readme.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="src"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Indices and tables"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">aav_ode 0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">AAV ODE Model</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright .
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>
