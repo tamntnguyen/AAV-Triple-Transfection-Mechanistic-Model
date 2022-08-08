@@ -1,0 +1,819 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>aav_ode.aav_ode module &#8212; aav_ode 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/nature.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="aav_ode package" href="aav_ode.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="aav_ode.html" title="aav_ode package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">aav_ode 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >src</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="aav_ode.html" accesskey="U">aav_ode package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">aav_ode.aav_ode module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-aav_ode.aav_ode">
+<span id="aav-ode-aav-ode-module"></span><h1>aav_ode.aav_ode module<a class="headerlink" href="#module-aav_ode.aav_ode" title="Permalink to this heading">¶</a></h1>
+<p>Mechanistic model using ordinary differential equations (ODE)
+to predict the dynamics of adenovirus-associated viral
+replication and production in vitro.</p>
+<p>Nguyen TNT, Sha S, Hong MS, Maloney AJ, Barone PW, Neufeld C,
+Wolfrum J, Springs SL, Sinskey AJ, Braatz RD.
+Mechanistic model for production of recombinant adeno-associated
+virus via triple transfection of HEK293 cells.
+Mol Ther Methods Clin Dev. 2021 Apr 16;21:642-655.
+doi: 10.1016/j.omt m.2021.04.006.
+PMID: 34095346;
+PMCID: PMC8143981.
+<a class="reference external" href="https://www.cell.com/molecular-therapy-family/methods/fulltext/S2329-0501(21)00072-3">https://www.cell.com/molecular-therapy-family/methods/fulltext/S2329-0501(21)00072-3</a></p>
+<p>Original MATLAB source code:
+<a class="reference external" href="https://github.com/tamntnguyen/AAV-Triple-Transfection-Mechanistic-Model">https://github.com/tamntnguyen/AAV-Triple-Transfection-Mechanistic-Model</a></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.Experiments">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aav_ode.aav_ode.</span></span><span class="sig-name descname"><span class="pre">Experiments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">media_exchange_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">60.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_concentrations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[76000.0,</span> <span class="pre">76000.0,</span> <span class="pre">76000.0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kUptake</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0011888</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kEscape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kNuclearEntry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0043</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kPlasmidDeg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0195</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kRepSyn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">64891.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kCapSyn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">64891.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kProteinDegRep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0245</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kProteinDegCap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.2773</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kDNArep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3.099e-07</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kBindRCplasmid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3.3829e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kAssembly</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kBindCapsid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0056979</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kPack</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.081784</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kSecrete</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ode_solver_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'BDF'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aav_ode.aav_ode.Experiments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Experiments class object</p>
+<p>Models the adeno-associated virus (AAV) transfection.
+Based on the paper:</p>
+<p>Nguyen TNT, Sha S, Hong MS, Maloney AJ, Barone PW, Neufeld C,
+Wolfrum J, Springs SL, Sinskey AJ, Braatz RD.
+Mechanistic model for production of recombinant adeno-associated
+virus via triple transfection of HEK293 cells.
+Mol Ther Methods Clin Dev. 2021 Apr 16;21:642-655.
+doi: 10.1016/j.omtm.2021.04.006.
+PMID: 34095346;
+PMCID: PMC8143981.
+<a class="reference external" href="https://www.cell.com/molecular-therapy-family/methods/fulltext/S2329-0501(21)00072-3">https://www.cell.com/molecular-therapy-family/methods/fulltext/S2329-0501(21)00072-3</a></p>
+<p>Original MATLAB source code:
+<a class="reference external" href="https://github.com/tamntnguyen/AAV-Triple-Transfection-Mechanistic-Model">https://github.com/tamntnguyen/AAV-Triple-Transfection-Mechanistic-Model</a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.Experiments.get_dna_fraction">
+<span class="sig-name descname"><span class="pre">get_dna_fraction</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#aav_ode.aav_ode.Experiments.get_dna_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the fraction (percentage) of the DNA used by capsid</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Percentage of DNA used by capsid</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.Experiments.get_initial_concentrations">
+<span class="sig-name descname"><span class="pre">get_initial_concentrations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#aav_ode.aav_ode.Experiments.get_initial_concentrations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the initial concentrations of rep, cap, and helper</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.Experiments.get_input_labels">
+<span class="sig-name descname"><span class="pre">get_input_labels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#aav_ode.aav_ode.Experiments.get_input_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a dictionary of all the k labels</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dictionary of the k constant labels</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.Experiments.get_k">
+<span class="sig-name descname"><span class="pre">get_k</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kLabel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#aav_ode.aav_ode.kType" title="aav_ode.aav_ode.kType"><span class="pre">kType</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#aav_ode.aav_ode.Experiments.get_k" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns one of the ODE k constants</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>kLabel</strong> (<a class="reference internal" href="#aav_ode.aav_ode.kType" title="aav_ode.aav_ode.kType"><em>kType</em></a>) – The label for the k</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The specified ODE constant.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.Experiments.get_media_exchange_time">
+<span class="sig-name descname"><span class="pre">get_media_exchange_time</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#aav_ode.aav_ode.Experiments.get_media_exchange_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the time of the media exchange</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The hours after transfection that the media is exchanged</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.Experiments.get_ode_solver_method">
+<span class="sig-name descname"><span class="pre">get_ode_solver_method</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#aav_ode.aav_ode.Experiments.get_ode_solver_method" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the ODE solver being used</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.Experiments.get_output_label">
+<span class="sig-name descname"><span class="pre">get_output_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#aav_ode.aav_ode.outputTypes" title="aav_ode.aav_ode.outputTypes"><span class="pre">outputTypes</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#aav_ode.aav_ode.Experiments.get_output_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the string label associated with the output type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>index</strong> (<a class="reference internal" href="#aav_ode.aav_ode.outputTypes" title="aav_ode.aav_ode.outputTypes"><em>outputTypes</em></a>) – Index</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Label of this output index</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.Experiments.get_output_labels">
+<span class="sig-name descname"><span class="pre">get_output_labels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#aav_ode.aav_ode.Experiments.get_output_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the string label associated with the output type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The labels of the output predictions</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.Experiments.get_solver_description">
+<span class="sig-name descname"><span class="pre">get_solver_description</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#aav_ode.aav_ode.Experiments.get_solver_description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary of the possible ODE solvers</p>
+<dl class="simple">
+<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/">https://docs.scipy.org/doc/scipy/reference/</a></dt><dd><p>generated/scipy.integrate.solve_ivp.html</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>ODE solver methods</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.Experiments.get_total_time">
+<span class="sig-name descname"><span class="pre">get_total_time</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#aav_ode.aav_ode.Experiments.get_total_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the total time of the experiment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The total time in hours of the experiment</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.Experiments.plot_outputs">
+<span class="sig-name descname"><span class="pre">plot_outputs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aav_ode.aav_ode.Experiments.plot_outputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the predictions for selected model outputs.</p>
+<p>This is Figure 7a from the paper.
+<a class="reference external" href="https://www.cell.com/molecular-therapy-family/methods/fulltext/S2329-0501(21)00072-3">https://www.cell.com/molecular-therapy-family/methods/fulltext/S2329-0501(21)00072-3</a></p>
+<p>Dynamic trends of the (A) species concentrations
+and (B) reaction fluxes. The values are qualitative.
+The simulation parameters were according
+to the in-house experiments described
+in Materials and methods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> (<em>np.ndarray</em>) – Time stamps</p></li>
+<li><p><strong>y</strong> (<em>np.ndarray</em>) – Predictions</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>go.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.Experiments.plot_production">
+<span class="sig-name descname"><span class="pre">plot_production</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aav_ode.aav_ode.Experiments.plot_production" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the predicted AAV capsid production from the model.</p>
+<p>This is Figure 4b from the paper.
+<a class="reference external" href="https://www.cell.com/molecular-therapy-family/methods/fulltext/S2329-0501(21)00072-3">https://www.cell.com/molecular-therapy-family/methods/fulltext/S2329-0501(21)00072-3</a></p>
+<p>Dynamics of total and full rAAV capsid production.
+Viral production parameters were fitted to
+in-house triple-transfection experimental data.
+Measurements of total and full rAAV capsids
+are per-milliliter culture, harvested
+from both cell lysate and supernatant,
+normalized by the cell density at
+the sampling time. The dotted line
+indicates time point of media
+exchange. Initial plasmid
+input was 7.6e4/cell for each of the three plasmids.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> (<em>np.ndarray</em>) – Time stamps</p></li>
+<li><p><strong>y</strong> (<em>np.ndarray</em>) – Predictions</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>go.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.Experiments.plot_replication">
+<span class="sig-name descname"><span class="pre">plot_replication</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#aav_ode.aav_ode.Experiments.plot_replication" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot replication curves</p>
+<p>This is Figure 4A from the paper.
+<a class="reference external" href="https://www.cell.com/molecular-therapy-family/methods/fulltext/S2329-0501(21)00072-3">https://www.cell.com/molecular-therapy-family/methods/fulltext/S2329-0501(21)00072-3</a></p>
+<ol class="upperalpha simple">
+<li><p>Dynamics of viral GFP DNA replication.</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> (<em>np.ndarray</em>) – Time stamps</p></li>
+<li><p><strong>y</strong> (<em>np.ndarray</em>) – Predictions</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>go.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.Experiments.run_simulation">
+<span class="sig-name descname"><span class="pre">run_simulation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#aav_ode.aav_ode.Experiments.run_simulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initial conditions - number of plasmids</p>
+<ol class="arabic simple">
+<li><p>Runs the ODE AAV model simulation.</p></li>
+<li><p>Starts the model based on the initial conditions.</p></li>
+<li><p>Solves the ODE from time 0 to time of media exchange.</p></li>
+<li><p>Updates the initial conditions after media exchange.</p></li>
+<li><p>Solves the ODE from time media exchange to total time.</p></li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.Experiments.set_initial_concentrations">
+<span class="sig-name descname"><span class="pre">set_initial_concentrations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_conditions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[76000.0,</span> <span class="pre">76000.0,</span> <span class="pre">76000.0]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aav_ode.aav_ode.Experiments.set_initial_concentrations" title="Permalink to this definition">¶</a></dt>
+<dd><p>initial plasmid input per cell for each of the 3 plasmids</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.Experiments.set_k">
+<span class="sig-name descname"><span class="pre">set_k</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#aav_ode.aav_ode.kType" title="aav_ode.aav_ode.kType"><span class="pre">kType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aav_ode.aav_ode.Experiments.set_k" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ODE k constants</p>
+<p>kUptake
+kEscape
+kNuclearEntry
+kPlasmidDeg
+kRepSyn
+kCapSyn
+kProteinDegRep [aka K_Rep_protein_degrade]
+kProteinDegCap [aka  kVP_degrade]
+kDNArep
+kBindRCplasmid
+kAssembly
+kBindCapsid
+kPack  [aka  k_DNA_pack]
+kSecrete:  Secretion constant</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>idx</strong> (<a class="reference internal" href="#aav_ode.aav_ode.kType" title="aav_ode.aav_ode.kType"><em>kType</em></a>) – k type</p></li>
+<li><p><strong>value</strong> (<em>float</em>) – value for k constant</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.Experiments.set_media_exchange_time">
+<span class="sig-name descname"><span class="pre">set_media_exchange_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">media_exchange_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">6.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aav_ode.aav_ode.Experiments.set_media_exchange_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the time of the media exchange</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>media_exchange_time</strong> (<em>float</em>) – The hours after transfection</p></li>
+<li><p><strong>exchanged</strong> (<em>that the media is</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.Experiments.set_ode_solver_method">
+<span class="sig-name descname"><span class="pre">set_ode_solver_method</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'BDF'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aav_ode.aav_ode.Experiments.set_ode_solver_method" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ordinary differential equations solver methods</p>
+<dl class="simple">
+<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/">https://docs.scipy.org/doc/scipy/reference/</a></dt><dd><p>generated/scipy.integrate.solve_ivp.html</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.Experiments.set_output_label">
+<span class="sig-name descname"><span class="pre">set_output_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pRC_extracellular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'pRC&lt;br&gt;extracellular'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pRC_endosomal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'pRC&lt;br&gt;endosomal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pRC_cytosol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'pRC&lt;br&gt;cytosol'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Packaging_Plasmid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Packaging&lt;br&gt;Plasmid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pVector_extracellular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'pVector&lt;br&gt;extracellular'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pVector_endosomal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'pVector&lt;br&gt;endosomal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pVector_cytosol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'pVector&lt;br&gt;cytosol'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vector_Plasmid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Vector&lt;br&gt;Plasmid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pHelper_extracellular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'pHelper_extracellular'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pHelper_endosomal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'pHelper&lt;br&gt;endosomal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pHelper_cytosol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'pHelper&lt;br&gt;cytosol'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Helper_Plasmid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Helper&lt;br&gt;Plasmid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rep_Protein</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Rep&lt;br&gt;Protein'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">VP</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'VP'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vDNA</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'vDNA'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Empty_Capsid_nucleus</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Empty&lt;br&gt;Capsid&lt;br&gt;nucleus'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Full_Capsid_nucleus</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Full</span> <span class="pre">Capsid&lt;br&gt;nucleus'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Empty_Capsid_cytosol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Empty</span> <span class="pre">Capsid&lt;br&gt;cytosol'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Full_Capsid_cytosol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Full</span> <span class="pre">Capsid&lt;br&gt;cytosol'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rep_bound_Packaging_Plasmid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Rep_bound&lt;br&gt;Packaging&lt;br&gt;Plasmid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rep_bound_Empty_Plasmid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Rep_bound&lt;br&gt;Empty&lt;br&gt;Plasmid'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#aav_ode.aav_ode.Experiments.set_output_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the output string</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pRC_extracellular</strong> (<em>str</em>) – pRC extracellular</p></li>
+<li><p><strong>pRC_endosomal</strong> (<em>str</em>) – pRC endosomal</p></li>
+<li><p><strong>pRC_cytosol</strong> (<em>str</em>) – pRC cytosol</p></li>
+<li><p><strong>Packaging_Plasmid</strong> (<em>str</em>) – Packaging Plasmid # aka pRC nucleus</p></li>
+<li><p><strong>pVector_extracellular</strong> (<em>str</em>) – pVector extracellular</p></li>
+<li><p><strong>pVector_endosomal</strong> (<em>str</em>) – pVector endosomal</p></li>
+<li><p><strong>pVector_cytosol</strong> (<em>str</em>) – pVector cytosol</p></li>
+<li><p><strong>Vector_Plasmid</strong> (<em>str</em>) – Vector Plasmid # aka “pVector nucleus”</p></li>
+<li><p><strong>pHelper_extracellular</strong> (<em>str</em>) – pHelper_extracellular</p></li>
+<li><p><strong>pHelper_endosomal</strong> (<em>str</em>) – pHelper endosomal</p></li>
+<li><p><strong>pHelper_cytosol</strong> (<em>str</em>) – pHelpercytosol</p></li>
+<li><p><strong>Helper_Plasmid</strong> (<em>str</em>) – Helper Plasmid # aka “pHelper nucleus”</p></li>
+<li><p><strong>Rep_Protein</strong> (<em>str</em>) – Rep Protein</p></li>
+<li><p><strong>VP</strong> (<em>str</em>) – VP  # aka “cap protein”</p></li>
+<li><p><strong>vDNA</strong> (<em>str</em>) – vDNA</p></li>
+<li><p><strong>Empty_Capsid_nucleus</strong> (<em>str</em>) – Empty Capsid nucleus</p></li>
+<li><p><strong>Full_Capsid_nucleus</strong> (<em>str</em>) – Full Capsid nucleus</p></li>
+<li><p><strong>Empty_Capsid_cytosol</strong> (<em>str</em>) – Empty Capsid cytosol</p></li>
+<li><p><strong>Full_Capsid_cytosol</strong> (<em>str</em>) – Full Capsid cytosol</p></li>
+<li><p><strong>Rep_bound_Packaging_Plasmid</strong> (<em>str</em>) – Rep_bound Packaging Plasmid</p></li>
+<li><p><strong>Rep_bound_Empty_Plasmid</strong> (<em>str</em>) – Rep_bound Empty Plasmid</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.Experiments.set_total_time">
+<span class="sig-name descname"><span class="pre">set_total_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">total_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">60.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aav_ode.aav_ode.Experiments.set_total_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the total time (hours) of the experiment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>total_time</strong> (<em>float</em>) – The total hours of the experiment</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.MEASURED_DATA">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aav_ode.aav_ode.</span></span><span class="sig-name descname"><span class="pre">MEASURED_DATA</span></span><a class="headerlink" href="#aav_ode.aav_ode.MEASURED_DATA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Experimental data from the original paper
+<a class="reference external" href="https://www.cell.com/molecular-therapy-family/methods/fulltext/S2329-0501(21)00072-3">https://www.cell.com/molecular-therapy-family/methods/fulltext/S2329-0501(21)00072-3</a></p>
+<p>‘ Model simulation with estimated parameters provides a good fit with
+experimental data (Figure 4). Interestingly, the plasmid kuptake
+estimated from in-house experimental data is significantly lower
+than that estimated from literature data. In-house experimental data
+show that viral DNA started replicating around 12 hours
+post transfection (hpt) and doubled every ∼12 h (Figure 4A).
+The total amount of capsid produced per cell increased sharply
+at first, with ∼80% of total capsids produced within the
+first 24 h and then plateaued. Total capsid particles and full
+virion production display a similar trend and saturate at
+a slightly later time point between 24 and 36 h; this trend is
+consistent with data from another transfection study, where the
+majority of full virions was produced in the first 24 h.
+Given the assumption that newly synthesized capsid proteins
+are rapidly assembled, the plateau in capsid particle production
+would be caused by saturation in VP production regulated by total
+Rep protein production. The amount of full virion only
+accounts for a consistent 2%–3% of the total capsid produced
+(Figure 4B). Although most of viral DNA was encapsidated at
+24 hpt, and DNA replication continued at an exponential rate,
+the rate of encapsidated DNA did not follow DNA replication
+and decreased significantly beyond that time point.
+By 48 hpt, only 26% of total viral DNA made it inside capsid
+particles (Figure 4A). ‘</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.MEASURED_DATA.INITIAL_CONCENTRATIONS">
+<span class="sig-name descname"><span class="pre">INITIAL_CONCENTRATIONS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[76000.0,</span> <span class="pre">76000.0,</span> <span class="pre">76000.0]</span></em><a class="headerlink" href="#aav_ode.aav_ode.MEASURED_DATA.INITIAL_CONCENTRATIONS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.MEASURED_DATA.MEDIA_EXCHANGE_TIME">
+<span class="sig-name descname"><span class="pre">MEDIA_EXCHANGE_TIME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6.0</span></em><a class="headerlink" href="#aav_ode.aav_ode.MEASURED_DATA.MEDIA_EXCHANGE_TIME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.MEASURED_DATA.TOTAL_TIME">
+<span class="sig-name descname"><span class="pre">TOTAL_TIME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">60.0</span></em><a class="headerlink" href="#aav_ode.aav_ode.MEASURED_DATA.TOTAL_TIME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.MEASURED_DATA.data_Total_DNA">
+<span class="sig-name descname"><span class="pre">data_Total_DNA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">array([[1.0000e+01,</span> <span class="pre">5.6604e+08,</span> <span class="pre">5.8795e+08,</span> <span class="pre">4.9559e+08],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[2.4000e+01,</span> <span class="pre">9.8793e+08,</span> <span class="pre">1.3904e+09,</span> <span class="pre">1.0795e+09],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[3.4000e+01,</span> <span class="pre">2.2493e+09,</span> <span class="pre">2.2210e+09,</span> <span class="pre">1.7910e+09],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[4.6000e+01,</span> <span class="pre">4.5122e+09,</span> <span class="pre">4.5409e+09,</span> <span class="pre">5.3871e+09]])</span></em><a class="headerlink" href="#aav_ode.aav_ode.MEASURED_DATA.data_Total_DNA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.MEASURED_DATA.data_cap">
+<span class="sig-name descname"><span class="pre">data_cap</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">array([[1.00e+01,</span> <span class="pre">5.85e+08],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[1.00e+01,</span> <span class="pre">5.84e+08],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[2.40e+01,</span> <span class="pre">3.62e+10],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[2.40e+01,</span> <span class="pre">4.03e+10],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[3.40e+01,</span> <span class="pre">4.11e+10],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[3.40e+01,</span> <span class="pre">3.59e+10],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[4.60e+01,</span> <span class="pre">5.58e+10],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[4.60e+01,</span> <span class="pre">5.29e+10],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[5.50e+01,</span> <span class="pre">4.52e+10],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[5.50e+01,</span> <span class="pre">4.77e+10]])</span></em><a class="headerlink" href="#aav_ode.aav_ode.MEASURED_DATA.data_cap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.MEASURED_DATA.data_full_cap">
+<span class="sig-name descname"><span class="pre">data_full_cap</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">array([[2.4000e+01,</span> <span class="pre">9.6824e+08,</span> <span class="pre">8.3180e+08,</span> <span class="pre">7.8574e+08],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[3.4000e+01,</span> <span class="pre">1.1707e+09,</span> <span class="pre">1.0381e+09,</span> <span class="pre">9.6213e+08],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[4.6000e+01,</span> <span class="pre">1.2472e+09,</span> <span class="pre">1.0446e+09,</span> <span class="pre">9.6824e+08]])</span></em><a class="headerlink" href="#aav_ode.aav_ode.MEASURED_DATA.data_full_cap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.MEASURED_DATA.kAssembly">
+<span class="sig-name descname"><span class="pre">kAssembly</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100000.0</span></em><a class="headerlink" href="#aav_ode.aav_ode.MEASURED_DATA.kAssembly" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.MEASURED_DATA.kBindCapsid">
+<span class="sig-name descname"><span class="pre">kBindCapsid</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0056979</span></em><a class="headerlink" href="#aav_ode.aav_ode.MEASURED_DATA.kBindCapsid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.MEASURED_DATA.kBindRCplasmid">
+<span class="sig-name descname"><span class="pre">kBindRCplasmid</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3.3829e-05</span></em><a class="headerlink" href="#aav_ode.aav_ode.MEASURED_DATA.kBindRCplasmid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.MEASURED_DATA.kCapSyn">
+<span class="sig-name descname"><span class="pre">kCapSyn</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">64891.0</span></em><a class="headerlink" href="#aav_ode.aav_ode.MEASURED_DATA.kCapSyn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.MEASURED_DATA.kDNArep">
+<span class="sig-name descname"><span class="pre">kDNArep</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3.099e-07</span></em><a class="headerlink" href="#aav_ode.aav_ode.MEASURED_DATA.kDNArep" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.MEASURED_DATA.kEscape">
+<span class="sig-name descname"><span class="pre">kEscape</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.6</span></em><a class="headerlink" href="#aav_ode.aav_ode.MEASURED_DATA.kEscape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.MEASURED_DATA.kNuclearEntry">
+<span class="sig-name descname"><span class="pre">kNuclearEntry</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0043</span></em><a class="headerlink" href="#aav_ode.aav_ode.MEASURED_DATA.kNuclearEntry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.MEASURED_DATA.kPack">
+<span class="sig-name descname"><span class="pre">kPack</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.081784</span></em><a class="headerlink" href="#aav_ode.aav_ode.MEASURED_DATA.kPack" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.MEASURED_DATA.kPlasmidDeg">
+<span class="sig-name descname"><span class="pre">kPlasmidDeg</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0195</span></em><a class="headerlink" href="#aav_ode.aav_ode.MEASURED_DATA.kPlasmidDeg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.MEASURED_DATA.kProteinDegCap">
+<span class="sig-name descname"><span class="pre">kProteinDegCap</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.2773</span></em><a class="headerlink" href="#aav_ode.aav_ode.MEASURED_DATA.kProteinDegCap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.MEASURED_DATA.kProteinDegRep">
+<span class="sig-name descname"><span class="pre">kProteinDegRep</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0245</span></em><a class="headerlink" href="#aav_ode.aav_ode.MEASURED_DATA.kProteinDegRep" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.MEASURED_DATA.kRepSyn">
+<span class="sig-name descname"><span class="pre">kRepSyn</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">64891.0</span></em><a class="headerlink" href="#aav_ode.aav_ode.MEASURED_DATA.kRepSyn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.MEASURED_DATA.kSecrete">
+<span class="sig-name descname"><span class="pre">kSecrete</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">100000.0</span></em><a class="headerlink" href="#aav_ode.aav_ode.MEASURED_DATA.kSecrete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.MEASURED_DATA.kUptake">
+<span class="sig-name descname"><span class="pre">kUptake</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0011888</span></em><a class="headerlink" href="#aav_ode.aav_ode.MEASURED_DATA.kUptake" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.get_version">
+<span class="sig-prename descclassname"><span class="pre">aav_ode.aav_ode.</span></span><span class="sig-name descname"><span class="pre">get_version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#aav_ode.aav_ode.get_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the version</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.kType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aav_ode.aav_ode.</span></span><span class="sig-name descname"><span class="pre">kType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aav_ode.aav_ode.kType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>Constants for the model</p>
+<p>‘ Figure 2.
+Helper plasmid (pHelper) activates expression of the rep/
+cap gene on the packaging plasmid (pPackaging) and
+synthesis (kCap_syn and kRep_syn) of viral protein (VP)
+and Rep protein (RepProtein). Capsid proteins are
+assembled (kassembly) into empty capsids in the nucleus
+(EmptyCapNuc), and each capsid particle consists of 60
+protein subunits. With helper functions from the helper
+plasmid, the Rep protein replicates (kDNA_rep) viral DNA
+(vDNA) from the transgene vector plasmid (pVector). Rep
+proteins dock on empty capsids (kRep_bind_capsid) to form
+intermediate complexes (CapRepcomplex), which then
+interact with viral DNA and encapsidate them inside capsids
+(kDNA_pack) at a 1:1 ratio to form full virions inside the nucleus
+(RepRCcomplex). Regardless of their contents (empty or
+full), capsids can be secreted out of the nucleus (ksecrete) into
+the cytosol (EmptyCapCyto and FullCapCyto). Rep protein
+binding (kRep_bind_plasmid) forming bounded plasmids
+(RepRCcomplex) negatively regulates expression of the
+rep/cap gene on the packaging plasmid. Degradation of
+proteins (kRep_protein_degrade and kVP_degrade) is possible
+during the process. ‘</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.kType.kAssembly">
+<span class="sig-name descname"><span class="pre">kAssembly</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10</span></em><a class="headerlink" href="#aav_ode.aav_ode.kType.kAssembly" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.kType.kBindCapsid">
+<span class="sig-name descname"><span class="pre">kBindCapsid</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">11</span></em><a class="headerlink" href="#aav_ode.aav_ode.kType.kBindCapsid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.kType.kBindRCplasmid">
+<span class="sig-name descname"><span class="pre">kBindRCplasmid</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">9</span></em><a class="headerlink" href="#aav_ode.aav_ode.kType.kBindRCplasmid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.kType.kCapSyn">
+<span class="sig-name descname"><span class="pre">kCapSyn</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#aav_ode.aav_ode.kType.kCapSyn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.kType.kDNArep">
+<span class="sig-name descname"><span class="pre">kDNArep</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#aav_ode.aav_ode.kType.kDNArep" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.kType.kEscape">
+<span class="sig-name descname"><span class="pre">kEscape</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#aav_ode.aav_ode.kType.kEscape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.kType.kNuclearEntry">
+<span class="sig-name descname"><span class="pre">kNuclearEntry</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#aav_ode.aav_ode.kType.kNuclearEntry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.kType.kPack">
+<span class="sig-name descname"><span class="pre">kPack</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">12</span></em><a class="headerlink" href="#aav_ode.aav_ode.kType.kPack" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.kType.kPlasmidDeg">
+<span class="sig-name descname"><span class="pre">kPlasmidDeg</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#aav_ode.aav_ode.kType.kPlasmidDeg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.kType.kProteinDegCap">
+<span class="sig-name descname"><span class="pre">kProteinDegCap</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></em><a class="headerlink" href="#aav_ode.aav_ode.kType.kProteinDegCap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.kType.kProteinDegRep">
+<span class="sig-name descname"><span class="pre">kProteinDegRep</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#aav_ode.aav_ode.kType.kProteinDegRep" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.kType.kRepSyn">
+<span class="sig-name descname"><span class="pre">kRepSyn</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#aav_ode.aav_ode.kType.kRepSyn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.kType.kSecrete">
+<span class="sig-name descname"><span class="pre">kSecrete</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">13</span></em><a class="headerlink" href="#aav_ode.aav_ode.kType.kSecrete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.kType.kUptake">
+<span class="sig-name descname"><span class="pre">kUptake</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#aav_ode.aav_ode.kType.kUptake" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.outputTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">aav_ode.aav_ode.</span></span><span class="sig-name descname"><span class="pre">outputTypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aav_ode.aav_ode.outputTypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IntEnum</span></code></p>
+<p>Types of output from the model</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.outputTypes.Empty_Capsid_cytosol">
+<span class="sig-name descname"><span class="pre">Empty_Capsid_cytosol</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">17</span></em><a class="headerlink" href="#aav_ode.aav_ode.outputTypes.Empty_Capsid_cytosol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.outputTypes.Empty_Capsid_nucleus">
+<span class="sig-name descname"><span class="pre">Empty_Capsid_nucleus</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">15</span></em><a class="headerlink" href="#aav_ode.aav_ode.outputTypes.Empty_Capsid_nucleus" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.outputTypes.Full_Capsid_cytosol">
+<span class="sig-name descname"><span class="pre">Full_Capsid_cytosol</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">18</span></em><a class="headerlink" href="#aav_ode.aav_ode.outputTypes.Full_Capsid_cytosol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.outputTypes.Full_Capsid_nucleus">
+<span class="sig-name descname"><span class="pre">Full_Capsid_nucleus</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">16</span></em><a class="headerlink" href="#aav_ode.aav_ode.outputTypes.Full_Capsid_nucleus" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.outputTypes.Helper_Plasmid">
+<span class="sig-name descname"><span class="pre">Helper_Plasmid</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">11</span></em><a class="headerlink" href="#aav_ode.aav_ode.outputTypes.Helper_Plasmid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.outputTypes.Packaging_Plasmid">
+<span class="sig-name descname"><span class="pre">Packaging_Plasmid</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#aav_ode.aav_ode.outputTypes.Packaging_Plasmid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.outputTypes.Rep_Protein">
+<span class="sig-name descname"><span class="pre">Rep_Protein</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">12</span></em><a class="headerlink" href="#aav_ode.aav_ode.outputTypes.Rep_Protein" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.outputTypes.Rep_bound_Empty_Plasmid">
+<span class="sig-name descname"><span class="pre">Rep_bound_Empty_Plasmid</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">20</span></em><a class="headerlink" href="#aav_ode.aav_ode.outputTypes.Rep_bound_Empty_Plasmid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.outputTypes.Rep_bound_Packaging_Plasmid">
+<span class="sig-name descname"><span class="pre">Rep_bound_Packaging_Plasmid</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">19</span></em><a class="headerlink" href="#aav_ode.aav_ode.outputTypes.Rep_bound_Packaging_Plasmid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.outputTypes.VP">
+<span class="sig-name descname"><span class="pre">VP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">13</span></em><a class="headerlink" href="#aav_ode.aav_ode.outputTypes.VP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.outputTypes.Vector_Plasmid">
+<span class="sig-name descname"><span class="pre">Vector_Plasmid</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></em><a class="headerlink" href="#aav_ode.aav_ode.outputTypes.Vector_Plasmid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.outputTypes.pHelper_cytosol">
+<span class="sig-name descname"><span class="pre">pHelper_cytosol</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10</span></em><a class="headerlink" href="#aav_ode.aav_ode.outputTypes.pHelper_cytosol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.outputTypes.pHelper_endosomal">
+<span class="sig-name descname"><span class="pre">pHelper_endosomal</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">9</span></em><a class="headerlink" href="#aav_ode.aav_ode.outputTypes.pHelper_endosomal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.outputTypes.pHelper_extracellular">
+<span class="sig-name descname"><span class="pre">pHelper_extracellular</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#aav_ode.aav_ode.outputTypes.pHelper_extracellular" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.outputTypes.pRC_cytosol">
+<span class="sig-name descname"><span class="pre">pRC_cytosol</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#aav_ode.aav_ode.outputTypes.pRC_cytosol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.outputTypes.pRC_endosomal">
+<span class="sig-name descname"><span class="pre">pRC_endosomal</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#aav_ode.aav_ode.outputTypes.pRC_endosomal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.outputTypes.pRC_extracellular">
+<span class="sig-name descname"><span class="pre">pRC_extracellular</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#aav_ode.aav_ode.outputTypes.pRC_extracellular" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.outputTypes.pVector_cytosol">
+<span class="sig-name descname"><span class="pre">pVector_cytosol</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#aav_ode.aav_ode.outputTypes.pVector_cytosol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.outputTypes.pVector_endosomal">
+<span class="sig-name descname"><span class="pre">pVector_endosomal</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#aav_ode.aav_ode.outputTypes.pVector_endosomal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.outputTypes.pVector_extracellular">
+<span class="sig-name descname"><span class="pre">pVector_extracellular</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#aav_ode.aav_ode.outputTypes.pVector_extracellular" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.outputTypes.vDNA">
+<span class="sig-name descname"><span class="pre">vDNA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">14</span></em><a class="headerlink" href="#aav_ode.aav_ode.outputTypes.vDNA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aav_ode.aav_ode.print_version">
+<span class="sig-prename descclassname"><span class="pre">aav_ode.aav_ode.</span></span><span class="sig-name descname"><span class="pre">print_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aav_ode.aav_ode.print_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints the software version</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="aav_ode.html"
+                          title="previous chapter">aav_ode package</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/aav_ode.aav_ode.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="aav_ode.html" title="aav_ode package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">aav_ode 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >src</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="aav_ode.html" >aav_ode package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">aav_ode.aav_ode module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright .
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

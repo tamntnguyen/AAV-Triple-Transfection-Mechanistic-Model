@@ -1,0 +1,8 @@
+black
+flake8
+flake8-black
+tox
+myst-parser
+sphinx 
+sphinx-rtd-theme
+pytest

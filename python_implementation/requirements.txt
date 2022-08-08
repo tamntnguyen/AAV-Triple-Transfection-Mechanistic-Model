@@ -1,0 +1,12 @@
+dash
+dash-iconify
+dash-mantine-components
+plotly
+plotly-express
+numpy
+scipy
+pandas
+click
+
+.
+
